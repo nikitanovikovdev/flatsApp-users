@@ -1,0 +1,18 @@
+syntax = 'proto3';
+
+package key;
+
+option go_package = "./";
+
+service Authorization {
+    rpc Authorize(RequestData) returns (Token) {}
+}
+
+message RequestData {
+    string username = 1;
+    string password = 2;
+}
+
+message Token {
+    string token = 1;
+}

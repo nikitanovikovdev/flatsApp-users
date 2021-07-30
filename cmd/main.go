@@ -1,16 +1,15 @@
 package main
 
 import (
-	"context"
 	"github.com/nikitanovikovdev/flatsApp-users/internal"
-	"github.com/nikitanovikovdev/flatsApp-users/pkg/users"
-
 	"github.com/nikitanovikovdev/flatsApp-users/pkg/platform/repository"
+	"github.com/nikitanovikovdev/flatsApp-users/pkg/users"
+	auth "github.com/nikitanovikovdev/flatsApp-users/proto"
 	"github.com/spf13/viper"
+	"google.golang.org/grpc"
+	"net"
+
 	"log"
-	"os"
-	"os/signal"
-	"syscall"
 )
 
 func main() {
@@ -23,30 +22,55 @@ func main() {
 		Port: viper.GetString("mongodb.port"),
 	})
 	if err != nil {
-		log.Fatalf("failed to create new mingo repository: %v", err)
+		log.Fatalf("failed to create new mongo repository: %v", err)
 	}
+
 	repo := users.NewRepository(db)
 	service := users.NewService(repo)
 	handler := users.NewHandler(service)
-	server := internal.NewServer(viper.GetString("server_user.hostname"), viper.GetString("server_user.port"), users.NewRouter(handler))
 
-	go func() {
-		if err = server.Run(); err != nil {
-			log.Fatal(err)
-		}
-	}()
 
-	quit := make(chan os.Signal, 1)
-	signal.Notify(quit, syscall.SIGTERM, syscall.SIGINT)
-	<- quit
+	s := grpc.NewServer()
+	srv  := internal.NewGRPCServer(handler)
+	auth.RegisterAuthorizationServer(s, srv)
 
-	if err := server.Shutdown(context.Background()); err != nil {
-		log.Fatalf("error occured on server shutting down")
+	l, err := net.Listen("tcp", ":8040")
+	if err != nil {
+		log.Fatalf("failed to connection: %v", err)
 	}
 
-	if err := db.Disconnect(context.Background()); err != nil {
-		log.Fatalf("error occured on db connection close")
+	if err := s.Serve(l); err != nil {
+		log.Fatalf("failed to listn: %v", err)
 	}
+
+
+
+
+
+
+
+
+
+
+
+	//
+	//go func() {
+	//	if err = server.Run(); err != nil {
+	//		log.Fatal(err)
+	//	}
+	//}()
+	//
+	//quit := make(chan os.Signal, 1)
+	//signal.Notify(quit, syscall.SIGTERM, syscall.SIGINT)
+	//<- quit
+	//
+	//if err := server.Shutdown(context.Background()); err != nil {
+	//	log.Fatalf("error occured on server shutting down")
+	//}
+	//
+	//if err := db.Disconnect(context.Background()); err != nil {
+	//	log.Fatalf("error occured on db connection close")
+	//}
 }
 
 func initConfig() error {

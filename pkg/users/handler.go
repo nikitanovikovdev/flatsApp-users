@@ -1,10 +1,7 @@
 package users
 
 import (
-	"encoding/json"
-	"github.com/nikitanovikovdev/flatsApp-users/pkg/platform/response"
-	"io/ioutil"
-	"net/http"
+	"context"
 )
 
 type Handler struct {
@@ -17,50 +14,35 @@ func NewHandler(s *Service) *Handler {
 	}
 }
 
-func (h *Handler) SignUp() http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		body, err := ioutil.ReadAll(r.Body)
-		if err != nil {
-			response.UserError(w, err)
-			return
-		}
+//func (h *Handler) SignUp() http.HandlerFunc {
+//	return func(w http.ResponseWriter, r *http.Request) {
+//		body, err := ioutil.ReadAll(r.Body)
+//		if err != nil {
+//			response.UserError(w, err)
+//			return
+//		}
+//
+//		id, err := h.s.CreateUser(r.Context(), body)
+//		if err != nil {
+//			response.DevError(w, err)
+//			return
+//		}
+//
+//		message, err := json.Marshal(id)
+//		if err != nil {
+//			response.DevError(w, err)
+//			return
+//		}
+//
+//		response.CreateWithMessage(w, message)
+//	}
+//}
 
-		token, err := h.s.CreateUser(r.Context(), body)
-		if err != nil {
-			response.DevError(w, err)
-			return
-		}
-
-		message, err := json.Marshal(token)
-		if err != nil {
-			response.DevError(w, err)
-			return
-		}
-
-		response.CreateWithMessage(w, message)
+func (h *Handler) SignIn(ctx context.Context, username, password string)  (string, error){
+	token, err := h.s.GenerateToken(ctx, username, password)
+	if err != nil {
+		return "", err
 	}
-}
 
-func (h *Handler) SignIn() http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		body, err := ioutil.ReadAll(r.Body)
-		if err != nil {
-			response.UserError(w, err)
-			return
-		}
-
-		token, err := h.s.GenerateToken(r.Context(), body)
-		if err != nil {
-			response.UserError(w, err)
-			return
-		}
-
-		message, err := json.Marshal(token)
-		if err != nil {
-			response.DevError(w, err)
-			return
-		}
-
-		response.CreateWithMessage(w, message)
-	}
+	return token, nil
 }

@@ -3,7 +3,6 @@ package users
 import (
 	"context"
 	"crypto/sha1"
-	"encoding/json"
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/nikitanovikovdev/flatsApp-users/pkg/platform/user"
@@ -25,25 +24,24 @@ type TokenClaims struct {
 	jwt.StandardClaims
 	Username string `json:"username" bson:"username"`
 }
+//
+//func (s *Service) CreateUser(ctx context.Context, u []byte) (interface{}, error) {
+//	var user user.User
+//	if err := json.Unmarshal(u, &user); err != nil {
+//		return user, err
+//	}
+//	user.Password = generatePasswordHash(user.Password)
+//	return s.repo.CreateUser(ctx, user)
+//}
 
-func (s *Service) CreateUser(ctx context.Context, u []byte) (interface{}, error) {
-	var user user.User
-	if err := json.Unmarshal(u, &user); err != nil {
-		return user, err
-	}
-	user.Password = generatePasswordHash(user.Password)
-	return s.repo.CreateUser(ctx, user)
-}
-
-func (s *Service) GenerateToken(ctx context.Context, u []byte) (string, error) {
+func (s *Service) GenerateToken(ctx context.Context, username, password string) (string, error) {
 	if err := initConfig(); err != nil {
 		fmt.Errorf("error connection to config : %v", err)
 	}
 
 	var usr user.User
-	if err := json.Unmarshal(u, &usr); err != nil {
-		return "", err
-	}
+	usr.Username = username
+	usr.Password = password
 
 	user, err := s.repo.GetUser(ctx, usr.Username, generatePasswordHash(usr.Password))
 	if err != nil {
