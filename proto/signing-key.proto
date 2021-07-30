@@ -8,6 +8,10 @@ service Authorization {
     rpc Authorize(RequestData) returns (Token) {}
 }
 
+service Registration {
+    rpc Registr(RegistrData) returns (Id) {}
+}
+
 message RequestData {
     string username = 1;
     string password = 2;
@@ -15,4 +19,13 @@ message RequestData {
 
 message Token {
     string token = 1;
+}
+
+message RegistrData {
+    string username = 1;
+    string password = 2;
+}
+
+message Id {
+    string id = 1;
 }

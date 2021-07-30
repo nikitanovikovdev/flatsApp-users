@@ -24,15 +24,16 @@ type TokenClaims struct {
 	jwt.StandardClaims
 	Username string `json:"username" bson:"username"`
 }
-//
-//func (s *Service) CreateUser(ctx context.Context, u []byte) (interface{}, error) {
-//	var user user.User
-//	if err := json.Unmarshal(u, &user); err != nil {
-//		return user, err
-//	}
-//	user.Password = generatePasswordHash(user.Password)
-//	return s.repo.CreateUser(ctx, user)
-//}
+
+func (s *Service) CreateUser(ctx context.Context, username, password string) (interface{}, error) {
+	var user user.User
+
+	user.Username = username
+	user.Password = password
+
+	user.Password = generatePasswordHash(user.Password)
+	return s.repo.CreateUser(ctx, user)
+}
 
 func (s *Service) GenerateToken(ctx context.Context, username, password string) (string, error) {
 	if err := initConfig(); err != nil {

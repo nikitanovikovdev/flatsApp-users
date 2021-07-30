@@ -32,7 +32,7 @@ func main() {
 
 	s := grpc.NewServer()
 	srv  := internal.NewGRPCServer(handler)
-	auth.RegisterAuthorizationServer(s, srv)
+	authorizations.RegisterAuthorizationServer(s, srv)
 
 	l, err := net.Listen("tcp", ":8040")
 	if err != nil {
@@ -42,35 +42,6 @@ func main() {
 	if err := s.Serve(l); err != nil {
 		log.Fatalf("failed to listn: %v", err)
 	}
-
-
-
-
-
-
-
-
-
-
-
-	//
-	//go func() {
-	//	if err = server.Run(); err != nil {
-	//		log.Fatal(err)
-	//	}
-	//}()
-	//
-	//quit := make(chan os.Signal, 1)
-	//signal.Notify(quit, syscall.SIGTERM, syscall.SIGINT)
-	//<- quit
-	//
-	//if err := server.Shutdown(context.Background()); err != nil {
-	//	log.Fatalf("error occured on server shutting down")
-	//}
-	//
-	//if err := db.Disconnect(context.Background()); err != nil {
-	//	log.Fatalf("error occured on db connection close")
-	//}
 }
 
 func initConfig() error {
