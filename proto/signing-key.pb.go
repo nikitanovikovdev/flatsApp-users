@@ -4,7 +4,7 @@
 // 	protoc        v3.6.1
 // source: signing-key.proto
 
-package authorization
+package authorizations
 
 import (
 	context "context"
