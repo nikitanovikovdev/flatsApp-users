@@ -4,7 +4,7 @@ import (
 	"github.com/nikitanovikovdev/flatsApp-users/internal"
 	"github.com/nikitanovikovdev/flatsApp-users/pkg/platform/repository"
 	"github.com/nikitanovikovdev/flatsApp-users/pkg/users"
-	auth "github.com/nikitanovikovdev/flatsApp-users/proto"
+	"github.com/nikitanovikovdev/flatsApp-users/proto"
 	"github.com/spf13/viper"
 	"google.golang.org/grpc"
 	"net"
