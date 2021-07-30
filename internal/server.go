@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/nikitanovikovdev/flatsApp-users/pkg/users"
 	auth "github.com/nikitanovikovdev/flatsApp-users/proto"
+	"log"
 )
 
 type GRPCServer struct {
@@ -27,10 +28,10 @@ func (g *GRPCServer) Authorize(ctx context.Context, req *auth.RequestData) (*aut
 
 func (g *GRPCServer) Registr(ctx context.Context, req *auth.RegistrData) (*auth.Id, error) {
 	idRes, err := g.h.SignUp(ctx, req.Username, req.Password)
-
+	log.Println(idRes.(string))
 	id, ok := idRes.(string)
 	if !ok {
-		return nil, err
+		return &auth.Id{}, err
 	}
 
 	if err != nil {

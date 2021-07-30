@@ -26,13 +26,12 @@ type TokenClaims struct {
 }
 
 func (s *Service) CreateUser(ctx context.Context, username, password string) (interface{}, error) {
-	var user user.User
+	var usr user.User
 
-	user.Username = username
-	user.Password = password
+	usr.Username = username
+	usr.Password = generatePasswordHash(password)
 
-	user.Password = generatePasswordHash(user.Password)
-	return s.repo.CreateUser(ctx, user)
+	return s.repo.CreateUser(ctx, usr)
 }
 
 func (s *Service) GenerateToken(ctx context.Context, username, password string) (string, error) {

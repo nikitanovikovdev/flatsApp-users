@@ -42,6 +42,19 @@ func main() {
 	if err := s.Serve(l); err != nil {
 		log.Fatalf("failed to listn: %v", err)
 	}
+
+	s1 := grpc.NewServer()
+	srv2  := internal.NewGRPCServer(handler)
+	authorizations.RegisterRegistrationServer(s1, srv2)
+
+	l1, err := net.Listen("tcp", ":8030")
+	if err != nil {
+		log.Fatalf("failed to connection: %v", err)
+	}
+
+	if err := s.Serve(l1); err != nil {
+		log.Fatalf("failed to listn: %v", err)
+	}
 }
 
 func initConfig() error {
