@@ -25,3 +25,16 @@ func (g *GRPCServer) Authorize(ctx context.Context, req *auth.RequestData) (*aut
 	return &auth.Token{Token: token}, nil
 }
 
+func (g *GRPCServer) Registr(ctx context.Context, req *auth.RegistrData) (*auth.Id, error) {
+	idRes, err := g.h.SignUp(ctx, req.Username, req.Password)
+
+	id, ok := idRes.(string)
+	if !ok {
+		return nil, err
+	}
+
+	if err != nil {
+		fmt.Sprintf("invalid user :%v", err)
+	}
+	return &auth.Id{Id: id}, nil
+}
