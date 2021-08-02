@@ -31,7 +31,7 @@ type GRPCServer struct {
 }
 
 func (g *GRPCServer) ReturnToken(ctx context.Context, empty *authorization.Empty) (*authorization.Token, error) {
-	return &authorization.Token{Token: g.h.ReturnToken()}, nil
+	return &authorization.Token{Token: g.h.GetToken()}, nil
 }
 
 func (g *GRPCServer) ReturnSignKey(ctx context.Context, empty *authorization.Empty) (*authorization.SigningKey, error) {

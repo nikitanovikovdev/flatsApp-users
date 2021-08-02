@@ -34,7 +34,6 @@ func main() {
 		log.Fatal(err)
 	}
 
-
 	s := grpc.NewServer()
 	srv := &internal.GRPCServer{}
 	authorization.RegisterAuthServer(s, srv)
@@ -47,18 +46,6 @@ func main() {
 	if err := s.Serve(l); err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
-	//s := grpc.NewServer()
-	//srv  := internal.NewGRPCServer(handler)
-	//authorization.RegisterAuthServer(s, srv)
-	//
-	//l, err := net.Listen("tcp", ":8040")
-	//if err != nil {
-	//	log.Fatalf("failed to connection: %v", err)
-	//}
-	//
-	//if err := s.Serve(l); err != nil {
-	//	log.Fatalf("failed to listn: %v", err)
-	//}
 }
 
 func initConfig() error {
