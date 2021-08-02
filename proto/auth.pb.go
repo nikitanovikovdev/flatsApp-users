@@ -4,7 +4,7 @@
 // 	protoc        v3.6.1
 // source: auth.proto
 
-package authorization
+package __
 
 import (
 	context "context"
@@ -62,53 +62,6 @@ func (*Empty) Descriptor() ([]byte, []int) {
 	return file_auth_proto_rawDescGZIP(), []int{0}
 }
 
-type Token struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Token string `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-}
-
-func (x *Token) Reset() {
-	*x = Token{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_auth_proto_msgTypes[1]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *Token) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Token) ProtoMessage() {}
-
-func (x *Token) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_proto_msgTypes[1]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Token.ProtoReflect.Descriptor instead.
-func (*Token) Descriptor() ([]byte, []int) {
-	return file_auth_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *Token) GetToken() string {
-	if x != nil {
-		return x.Token
-	}
-	return ""
-}
-
 type SigningKey struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -120,7 +73,7 @@ type SigningKey struct {
 func (x *SigningKey) Reset() {
 	*x = SigningKey{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_auth_proto_msgTypes[2]
+		mi := &file_auth_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -133,7 +86,7 @@ func (x *SigningKey) String() string {
 func (*SigningKey) ProtoMessage() {}
 
 func (x *SigningKey) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_proto_msgTypes[2]
+	mi := &file_auth_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -146,7 +99,7 @@ func (x *SigningKey) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SigningKey.ProtoReflect.Descriptor instead.
 func (*SigningKey) Descriptor() ([]byte, []int) {
-	return file_auth_proto_rawDescGZIP(), []int{2}
+	return file_auth_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *SigningKey) GetSigningKey() string {
@@ -160,19 +113,14 @@ var File_auth_proto protoreflect.FileDescriptor
 
 var file_auth_proto_rawDesc = []byte{
 	0x0a, 0x0a, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x03, 0x6b, 0x65,
-	0x79, 0x22, 0x07, 0x0a, 0x05, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x1d, 0x0a, 0x05, 0x54, 0x6f,
-	0x6b, 0x65, 0x6e, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x22, 0x2c, 0x0a, 0x0a, 0x53, 0x69, 0x67,
-	0x6e, 0x69, 0x6e, 0x67, 0x4b, 0x65, 0x79, 0x12, 0x1e, 0x0a, 0x0a, 0x73, 0x69, 0x67, 0x6e, 0x69,
-	0x6e, 0x67, 0x4b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x73, 0x69, 0x67,
-	0x6e, 0x69, 0x6e, 0x67, 0x4b, 0x65, 0x79, 0x32, 0x5f, 0x0a, 0x04, 0x41, 0x75, 0x74, 0x68, 0x12,
-	0x27, 0x0a, 0x0b, 0x52, 0x65, 0x74, 0x75, 0x72, 0x6e, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x0a,
-	0x2e, 0x6b, 0x65, 0x79, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x0a, 0x2e, 0x6b, 0x65, 0x79,
-	0x2e, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x22, 0x00, 0x12, 0x2e, 0x0a, 0x0d, 0x52, 0x65, 0x74, 0x75,
-	0x72, 0x6e, 0x53, 0x69, 0x67, 0x6e, 0x4b, 0x65, 0x79, 0x12, 0x0a, 0x2e, 0x6b, 0x65, 0x79, 0x2e,
-	0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x0f, 0x2e, 0x6b, 0x65, 0x79, 0x2e, 0x53, 0x69, 0x67, 0x6e,
-	0x69, 0x6e, 0x67, 0x4b, 0x65, 0x79, 0x22, 0x00, 0x42, 0x04, 0x5a, 0x02, 0x2e, 0x2f, 0x62, 0x06,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x79, 0x22, 0x07, 0x0a, 0x05, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x2c, 0x0a, 0x0a, 0x53, 0x69,
+	0x67, 0x6e, 0x69, 0x6e, 0x67, 0x4b, 0x65, 0x79, 0x12, 0x1e, 0x0a, 0x0a, 0x73, 0x69, 0x67, 0x6e,
+	0x69, 0x6e, 0x67, 0x4b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x73, 0x69,
+	0x67, 0x6e, 0x69, 0x6e, 0x67, 0x4b, 0x65, 0x79, 0x32, 0x36, 0x0a, 0x04, 0x41, 0x75, 0x74, 0x68,
+	0x12, 0x2e, 0x0a, 0x0d, 0x52, 0x65, 0x74, 0x75, 0x72, 0x6e, 0x53, 0x69, 0x67, 0x6e, 0x4b, 0x65,
+	0x79, 0x12, 0x0a, 0x2e, 0x6b, 0x65, 0x79, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x0f, 0x2e,
+	0x6b, 0x65, 0x79, 0x2e, 0x53, 0x69, 0x67, 0x6e, 0x69, 0x6e, 0x67, 0x4b, 0x65, 0x79, 0x22, 0x00,
+	0x42, 0x04, 0x5a, 0x02, 0x2e, 0x2f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -187,19 +135,16 @@ func file_auth_proto_rawDescGZIP() []byte {
 	return file_auth_proto_rawDescData
 }
 
-var file_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_auth_proto_goTypes = []interface{}{
 	(*Empty)(nil),      // 0: key.Empty
-	(*Token)(nil),      // 1: key.Token
-	(*SigningKey)(nil), // 2: key.SigningKey
+	(*SigningKey)(nil), // 1: key.SigningKey
 }
 var file_auth_proto_depIdxs = []int32{
-	0, // 0: key.Auth.ReturnToken:input_type -> key.Empty
-	0, // 1: key.Auth.ReturnSignKey:input_type -> key.Empty
-	1, // 2: key.Auth.ReturnToken:output_type -> key.Token
-	2, // 3: key.Auth.ReturnSignKey:output_type -> key.SigningKey
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	0, // 0: key.Auth.ReturnSignKey:input_type -> key.Empty
+	1, // 1: key.Auth.ReturnSignKey:output_type -> key.SigningKey
+	1, // [1:2] is the sub-list for method output_type
+	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -224,18 +169,6 @@ func file_auth_proto_init() {
 			}
 		}
 		file_auth_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Token); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_auth_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SigningKey); i {
 			case 0:
 				return &v.state
@@ -254,7 +187,7 @@ func file_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_auth_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -280,7 +213,6 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type AuthClient interface {
-	ReturnToken(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Token, error)
 	ReturnSignKey(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*SigningKey, error)
 }
 
@@ -290,15 +222,6 @@ type authClient struct {
 
 func NewAuthClient(cc grpc.ClientConnInterface) AuthClient {
 	return &authClient{cc}
-}
-
-func (c *authClient) ReturnToken(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Token, error) {
-	out := new(Token)
-	err := c.cc.Invoke(ctx, "/key.Auth/ReturnToken", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *authClient) ReturnSignKey(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*SigningKey, error) {
@@ -312,7 +235,6 @@ func (c *authClient) ReturnSignKey(ctx context.Context, in *Empty, opts ...grpc.
 
 // AuthServer is the server API for Auth service.
 type AuthServer interface {
-	ReturnToken(context.Context, *Empty) (*Token, error)
 	ReturnSignKey(context.Context, *Empty) (*SigningKey, error)
 }
 
@@ -320,33 +242,12 @@ type AuthServer interface {
 type UnimplementedAuthServer struct {
 }
 
-func (*UnimplementedAuthServer) ReturnToken(context.Context, *Empty) (*Token, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ReturnToken not implemented")
-}
 func (*UnimplementedAuthServer) ReturnSignKey(context.Context, *Empty) (*SigningKey, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReturnSignKey not implemented")
 }
 
 func RegisterAuthServer(s *grpc.Server, srv AuthServer) {
 	s.RegisterService(&_Auth_serviceDesc, srv)
-}
-
-func _Auth_ReturnToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AuthServer).ReturnToken(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/key.Auth/ReturnToken",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).ReturnToken(ctx, req.(*Empty))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _Auth_ReturnSignKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -371,10 +272,6 @@ var _Auth_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "key.Auth",
 	HandlerType: (*AuthServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "ReturnToken",
-			Handler:    _Auth_ReturnToken_Handler,
-		},
 		{
 			MethodName: "ReturnSignKey",
 			Handler:    _Auth_ReturnSignKey_Handler,

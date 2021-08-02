@@ -5,16 +5,11 @@ package key;
 option go_package = "./";
 
 service Auth {
-    rpc ReturnToken(Empty) returns (Token) {}
     rpc ReturnSignKey(Empty) returns (SigningKey) {}
 }
 
 message Empty {
 
-}
-
-message Token {
-    string token = 1;
 }
 
 message SigningKey {
