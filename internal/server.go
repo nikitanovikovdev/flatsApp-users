@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/nikitanovikovdev/flatsApp-users/pkg/users"
 	auth "github.com/nikitanovikovdev/flatsApp-users/proto"
-	"log"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 type GRPCServer struct {
@@ -28,14 +28,11 @@ func (g *GRPCServer) Authorize(ctx context.Context, req *auth.RequestData) (*aut
 
 func (g *GRPCServer) Registr(ctx context.Context, req *auth.RegistrData) (*auth.Id, error) {
 	idRes, err := g.h.SignUp(ctx, req.Username, req.Password)
-	log.Println(idRes.(string))
-	id, ok := idRes.(string)
-	if !ok {
-		return &auth.Id{}, err
+	if err != nil {
+		return &auth.Id{Id: ""}, err
 	}
 
-	if err != nil {
-		fmt.Sprintf("invalid user :%v", err)
-	}
+	id := idRes.(primitive.ObjectID).String()
+
 	return &auth.Id{Id: id}, nil
 }

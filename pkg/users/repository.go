@@ -29,6 +29,7 @@ func (r *Repository) CreateUser(ctx context.Context, u user.User) (interface{}, 
 	}
 
 	id := res.InsertedID
+
 	return id, nil
 }
 
