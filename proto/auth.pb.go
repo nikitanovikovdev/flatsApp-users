@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.27.1
 // 	protoc        v3.6.1
-// source: signing-key.proto
+// source: auth.proto
 
-package authorizations
+package authorization
 
 import (
 	context "context"
@@ -36,7 +36,7 @@ type RequestData struct {
 func (x *RequestData) Reset() {
 	*x = RequestData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_signing_key_proto_msgTypes[0]
+		mi := &file_auth_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -49,7 +49,7 @@ func (x *RequestData) String() string {
 func (*RequestData) ProtoMessage() {}
 
 func (x *RequestData) ProtoReflect() protoreflect.Message {
-	mi := &file_signing_key_proto_msgTypes[0]
+	mi := &file_auth_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -62,7 +62,7 @@ func (x *RequestData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RequestData.ProtoReflect.Descriptor instead.
 func (*RequestData) Descriptor() ([]byte, []int) {
-	return file_signing_key_proto_rawDescGZIP(), []int{0}
+	return file_auth_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *RequestData) GetUsername() string {
@@ -90,7 +90,7 @@ type Token struct {
 func (x *Token) Reset() {
 	*x = Token{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_signing_key_proto_msgTypes[1]
+		mi := &file_auth_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -103,7 +103,7 @@ func (x *Token) String() string {
 func (*Token) ProtoMessage() {}
 
 func (x *Token) ProtoReflect() protoreflect.Message {
-	mi := &file_signing_key_proto_msgTypes[1]
+	mi := &file_auth_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -116,7 +116,7 @@ func (x *Token) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Token.ProtoReflect.Descriptor instead.
 func (*Token) Descriptor() ([]byte, []int) {
-	return file_signing_key_proto_rawDescGZIP(), []int{1}
+	return file_auth_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Token) GetToken() string {
@@ -138,7 +138,7 @@ type RegistrData struct {
 func (x *RegistrData) Reset() {
 	*x = RegistrData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_signing_key_proto_msgTypes[2]
+		mi := &file_auth_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -151,7 +151,7 @@ func (x *RegistrData) String() string {
 func (*RegistrData) ProtoMessage() {}
 
 func (x *RegistrData) ProtoReflect() protoreflect.Message {
-	mi := &file_signing_key_proto_msgTypes[2]
+	mi := &file_auth_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -164,7 +164,7 @@ func (x *RegistrData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegistrData.ProtoReflect.Descriptor instead.
 func (*RegistrData) Descriptor() ([]byte, []int) {
-	return file_signing_key_proto_rawDescGZIP(), []int{2}
+	return file_auth_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *RegistrData) GetUsername() string {
@@ -192,7 +192,7 @@ type Id struct {
 func (x *Id) Reset() {
 	*x = Id{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_signing_key_proto_msgTypes[3]
+		mi := &file_auth_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -205,7 +205,7 @@ func (x *Id) String() string {
 func (*Id) ProtoMessage() {}
 
 func (x *Id) ProtoReflect() protoreflect.Message {
-	mi := &file_signing_key_proto_msgTypes[3]
+	mi := &file_auth_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -218,7 +218,7 @@ func (x *Id) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Id.ProtoReflect.Descriptor instead.
 func (*Id) Descriptor() ([]byte, []int) {
-	return file_signing_key_proto_rawDescGZIP(), []int{3}
+	return file_auth_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Id) GetId() string {
@@ -228,57 +228,55 @@ func (x *Id) GetId() string {
 	return ""
 }
 
-var File_signing_key_proto protoreflect.FileDescriptor
+var File_auth_proto protoreflect.FileDescriptor
 
-var file_signing_key_proto_rawDesc = []byte{
-	0x0a, 0x11, 0x73, 0x69, 0x67, 0x6e, 0x69, 0x6e, 0x67, 0x2d, 0x6b, 0x65, 0x79, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x12, 0x03, 0x6b, 0x65, 0x79, 0x22, 0x45, 0x0a, 0x0b, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x44, 0x61, 0x74, 0x61, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e,
-	0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e,
-	0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22,
-	0x1d, 0x0a, 0x05, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x6f, 0x6b, 0x65,
-	0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x22, 0x45,
-	0x0a, 0x0b, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x44, 0x61, 0x74, 0x61, 0x12, 0x1a, 0x0a,
-	0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73,
-	0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x61, 0x73,
-	0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x14, 0x0a, 0x02, 0x49, 0x64, 0x12, 0x0e, 0x0a, 0x02, 0x69,
-	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x32, 0x3c, 0x0a, 0x0d, 0x41,
-	0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2b, 0x0a, 0x09,
+var file_auth_proto_rawDesc = []byte{
+	0x0a, 0x0a, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x03, 0x6b, 0x65,
+	0x79, 0x22, 0x45, 0x0a, 0x0b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x44, 0x61, 0x74, 0x61,
+	0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x08,
+	0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08,
+	0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x1d, 0x0a, 0x05, 0x54, 0x6f, 0x6b, 0x65,
+	0x6e, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x22, 0x45, 0x0a, 0x0b, 0x52, 0x65, 0x67, 0x69, 0x73,
+	0x74, 0x72, 0x44, 0x61, 0x74, 0x61, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61,
+	0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61,
+	0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x14,
+	0x0a, 0x02, 0x49, 0x64, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x02, 0x69, 0x64, 0x32, 0x5b, 0x0a, 0x04, 0x41, 0x75, 0x74, 0x68, 0x12, 0x2b, 0x0a, 0x09,
 	0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x7a, 0x65, 0x12, 0x10, 0x2e, 0x6b, 0x65, 0x79, 0x2e,
 	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x44, 0x61, 0x74, 0x61, 0x1a, 0x0a, 0x2e, 0x6b, 0x65,
-	0x79, 0x2e, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x22, 0x00, 0x32, 0x36, 0x0a, 0x0c, 0x52, 0x65, 0x67,
-	0x69, 0x73, 0x74, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x26, 0x0a, 0x07, 0x52, 0x65, 0x67,
+	0x79, 0x2e, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x22, 0x00, 0x12, 0x26, 0x0a, 0x07, 0x52, 0x65, 0x67,
 	0x69, 0x73, 0x74, 0x72, 0x12, 0x10, 0x2e, 0x6b, 0x65, 0x79, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x73,
 	0x74, 0x72, 0x44, 0x61, 0x74, 0x61, 0x1a, 0x07, 0x2e, 0x6b, 0x65, 0x79, 0x2e, 0x49, 0x64, 0x22,
 	0x00, 0x42, 0x04, 0x5a, 0x02, 0x2e, 0x2f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_signing_key_proto_rawDescOnce sync.Once
-	file_signing_key_proto_rawDescData = file_signing_key_proto_rawDesc
+	file_auth_proto_rawDescOnce sync.Once
+	file_auth_proto_rawDescData = file_auth_proto_rawDesc
 )
 
-func file_signing_key_proto_rawDescGZIP() []byte {
-	file_signing_key_proto_rawDescOnce.Do(func() {
-		file_signing_key_proto_rawDescData = protoimpl.X.CompressGZIP(file_signing_key_proto_rawDescData)
+func file_auth_proto_rawDescGZIP() []byte {
+	file_auth_proto_rawDescOnce.Do(func() {
+		file_auth_proto_rawDescData = protoimpl.X.CompressGZIP(file_auth_proto_rawDescData)
 	})
-	return file_signing_key_proto_rawDescData
+	return file_auth_proto_rawDescData
 }
 
-var file_signing_key_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
-var file_signing_key_proto_goTypes = []interface{}{
+var file_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_auth_proto_goTypes = []interface{}{
 	(*RequestData)(nil), // 0: key.RequestData
 	(*Token)(nil),       // 1: key.Token
 	(*RegistrData)(nil), // 2: key.RegistrData
 	(*Id)(nil),          // 3: key.Id
 }
-var file_signing_key_proto_depIdxs = []int32{
-	0, // 0: key.Authorization.Authorize:input_type -> key.RequestData
-	2, // 1: key.Registration.Registr:input_type -> key.RegistrData
-	1, // 2: key.Authorization.Authorize:output_type -> key.Token
-	3, // 3: key.Registration.Registr:output_type -> key.Id
+var file_auth_proto_depIdxs = []int32{
+	0, // 0: key.Auth.Authorize:input_type -> key.RequestData
+	2, // 1: key.Auth.Registr:input_type -> key.RegistrData
+	1, // 2: key.Auth.Authorize:output_type -> key.Token
+	3, // 3: key.Auth.Registr:output_type -> key.Id
 	2, // [2:4] is the sub-list for method output_type
 	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -286,13 +284,13 @@ var file_signing_key_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_signing_key_proto_init() }
-func file_signing_key_proto_init() {
-	if File_signing_key_proto != nil {
+func init() { file_auth_proto_init() }
+func file_auth_proto_init() {
+	if File_auth_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_signing_key_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_auth_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RequestData); i {
 			case 0:
 				return &v.state
@@ -304,7 +302,7 @@ func file_signing_key_proto_init() {
 				return nil
 			}
 		}
-		file_signing_key_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_auth_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Token); i {
 			case 0:
 				return &v.state
@@ -316,7 +314,7 @@ func file_signing_key_proto_init() {
 				return nil
 			}
 		}
-		file_signing_key_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_auth_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RegistrData); i {
 			case 0:
 				return &v.state
@@ -328,7 +326,7 @@ func file_signing_key_proto_init() {
 				return nil
 			}
 		}
-		file_signing_key_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_auth_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Id); i {
 			case 0:
 				return &v.state
@@ -345,20 +343,20 @@ func file_signing_key_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_signing_key_proto_rawDesc,
+			RawDescriptor: file_auth_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   4,
 			NumExtensions: 0,
-			NumServices:   2,
+			NumServices:   1,
 		},
-		GoTypes:           file_signing_key_proto_goTypes,
-		DependencyIndexes: file_signing_key_proto_depIdxs,
-		MessageInfos:      file_signing_key_proto_msgTypes,
+		GoTypes:           file_auth_proto_goTypes,
+		DependencyIndexes: file_auth_proto_depIdxs,
+		MessageInfos:      file_auth_proto_msgTypes,
 	}.Build()
-	File_signing_key_proto = out.File
-	file_signing_key_proto_rawDesc = nil
-	file_signing_key_proto_goTypes = nil
-	file_signing_key_proto_depIdxs = nil
+	File_auth_proto = out.File
+	file_auth_proto_rawDesc = nil
+	file_auth_proto_goTypes = nil
+	file_auth_proto_depIdxs = nil
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -369,146 +367,110 @@ var _ grpc.ClientConnInterface
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion6
 
-// AuthorizationClient is the client API for Authorization service.
+// AuthClient is the client API for Auth service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type AuthorizationClient interface {
+type AuthClient interface {
 	Authorize(ctx context.Context, in *RequestData, opts ...grpc.CallOption) (*Token, error)
+	Registr(ctx context.Context, in *RegistrData, opts ...grpc.CallOption) (*Id, error)
 }
 
-type authorizationClient struct {
+type authClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewAuthorizationClient(cc grpc.ClientConnInterface) AuthorizationClient {
-	return &authorizationClient{cc}
+func NewAuthClient(cc grpc.ClientConnInterface) AuthClient {
+	return &authClient{cc}
 }
 
-func (c *authorizationClient) Authorize(ctx context.Context, in *RequestData, opts ...grpc.CallOption) (*Token, error) {
+func (c *authClient) Authorize(ctx context.Context, in *RequestData, opts ...grpc.CallOption) (*Token, error) {
 	out := new(Token)
-	err := c.cc.Invoke(ctx, "/key.Authorization/Authorize", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/key.Auth/Authorize", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// AuthorizationServer is the server API for Authorization service.
-type AuthorizationServer interface {
+func (c *authClient) Registr(ctx context.Context, in *RegistrData, opts ...grpc.CallOption) (*Id, error) {
+	out := new(Id)
+	err := c.cc.Invoke(ctx, "/key.Auth/Registr", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// AuthServer is the server API for Auth service.
+type AuthServer interface {
 	Authorize(context.Context, *RequestData) (*Token, error)
+	Registr(context.Context, *RegistrData) (*Id, error)
 }
 
-// UnimplementedAuthorizationServer can be embedded to have forward compatible implementations.
-type UnimplementedAuthorizationServer struct {
+// UnimplementedAuthServer can be embedded to have forward compatible implementations.
+type UnimplementedAuthServer struct {
 }
 
-func (*UnimplementedAuthorizationServer) Authorize(context.Context, *RequestData) (*Token, error) {
+func (*UnimplementedAuthServer) Authorize(context.Context, *RequestData) (*Token, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Authorize not implemented")
 }
-
-func RegisterAuthorizationServer(s *grpc.Server, srv AuthorizationServer) {
-	s.RegisterService(&_Authorization_serviceDesc, srv)
+func (*UnimplementedAuthServer) Registr(context.Context, *RegistrData) (*Id, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Registr not implemented")
 }
 
-func _Authorization_Authorize_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func RegisterAuthServer(s *grpc.Server, srv AuthServer) {
+	s.RegisterService(&_Auth_serviceDesc, srv)
+}
+
+func _Auth_Authorize_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RequestData)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthorizationServer).Authorize(ctx, in)
+		return srv.(AuthServer).Authorize(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/key.Authorization/Authorize",
+		FullMethod: "/key.Auth/Authorize",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthorizationServer).Authorize(ctx, req.(*RequestData))
+		return srv.(AuthServer).Authorize(ctx, req.(*RequestData))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _Authorization_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "key.Authorization",
-	HandlerType: (*AuthorizationServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Authorize",
-			Handler:    _Authorization_Authorize_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "signing-key.proto",
-}
-
-// RegistrationClient is the client API for Registration service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type RegistrationClient interface {
-	Registr(ctx context.Context, in *RegistrData, opts ...grpc.CallOption) (*Id, error)
-}
-
-type registrationClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewRegistrationClient(cc grpc.ClientConnInterface) RegistrationClient {
-	return &registrationClient{cc}
-}
-
-func (c *registrationClient) Registr(ctx context.Context, in *RegistrData, opts ...grpc.CallOption) (*Id, error) {
-	out := new(Id)
-	err := c.cc.Invoke(ctx, "/key.Registration/Registr", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// RegistrationServer is the server API for Registration service.
-type RegistrationServer interface {
-	Registr(context.Context, *RegistrData) (*Id, error)
-}
-
-// UnimplementedRegistrationServer can be embedded to have forward compatible implementations.
-type UnimplementedRegistrationServer struct {
-}
-
-func (*UnimplementedRegistrationServer) Registr(context.Context, *RegistrData) (*Id, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Registr not implemented")
-}
-
-func RegisterRegistrationServer(s *grpc.Server, srv RegistrationServer) {
-	s.RegisterService(&_Registration_serviceDesc, srv)
-}
-
-func _Registration_Registr_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Auth_Registr_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RegistrData)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RegistrationServer).Registr(ctx, in)
+		return srv.(AuthServer).Registr(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/key.Registration/Registr",
+		FullMethod: "/key.Auth/Registr",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RegistrationServer).Registr(ctx, req.(*RegistrData))
+		return srv.(AuthServer).Registr(ctx, req.(*RegistrData))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _Registration_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "key.Registration",
-	HandlerType: (*RegistrationServer)(nil),
+var _Auth_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "key.Auth",
+	HandlerType: (*AuthServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "Authorize",
+			Handler:    _Auth_Authorize_Handler,
+		},
+		{
 			MethodName: "Registr",
-			Handler:    _Registration_Registr_Handler,
+			Handler:    _Auth_Registr_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "signing-key.proto",
+	Metadata: "auth.proto",
 }

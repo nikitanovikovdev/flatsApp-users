@@ -4,11 +4,8 @@ package key;
 
 option go_package = "./";
 
-service Authorization {
+service Auth {
     rpc Authorize(RequestData) returns (Token) {}
-}
-
-service Registration {
     rpc Registr(RegistrData) returns (Id) {}
 }
 
