@@ -1,8 +1,13 @@
 package users
 
 import (
-	"context"
+	"encoding/json"
+	"github.com/nikitanovikovdev/flatsApp-users/pkg/platform/response"
+	"github.com/nikitanovikovdev/flatsApp-users/pkg/platform/user"
+	"net/http"
 )
+
+var tkn string
 
 type Handler struct {
 	s *Service
@@ -14,20 +19,46 @@ func NewHandler(s *Service) *Handler {
 	}
 }
 
-func (h *Handler) SignUp(ctx context.Context, username, password string) (interface{}, error) {
-	id, err := h.s.CreateUser(ctx, username, password)
-	if err != nil {
-		return "", err
-	}
+func (h *Handler) SignUp() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		var user user.User
+		if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
+			response.UserError(w, err)
+			return
+		}
 
-	return id, nil
+		id, err := h.s.CreateUser(r.Context(), user)
+		if err != nil {
+			response.UserError(w, err)
+			return
+		}
+
+		idStr := id.(string)
+
+		response.OkWithMessage(w, []byte(idStr))
+	}
 }
 
-func (h *Handler) SignIn(ctx context.Context, username, password string)  (string, error){
-	token, err := h.s.GenerateToken(ctx, username, password)
-	if err != nil {
-		return "", err
-	}
+func (h *Handler) SignIn()  http.HandlerFunc{
+	return func(w http.ResponseWriter, r *http.Request) {
+		var user user.User
+		if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
+			response.UserError(w, err)
+			return
+		}
 
-	return token, nil
+		token, err := h.s.GenerateToken(r.Context(), user)
+		if err != nil {
+			response.DevError(w, err)
+			return
+		}
+
+		tkn = token
+
+		response.OkWithMessage(w, []byte(token))
+	}
+}
+
+func (h *Handler) ReturnToken() string {
+	return tkn
 }

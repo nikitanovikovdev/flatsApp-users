@@ -25,25 +25,19 @@ type TokenClaims struct {
 	Username string `json:"username" bson:"username"`
 }
 
-func (s *Service) CreateUser(ctx context.Context, username, password string) (interface{}, error) {
-	var usr user.User
+func (s *Service) CreateUser(ctx context.Context, user user.User) (interface{}, error) {
 
-	usr.Username = username
-	usr.Password = generatePasswordHash(password)
+	user.Password = generatePasswordHash(user.Password)
 
-	return s.repo.CreateUser(ctx, usr)
+	return s.repo.CreateUser(ctx, user)
 }
 
-func (s *Service) GenerateToken(ctx context.Context, username, password string) (string, error) {
+func (s *Service) GenerateToken(ctx context.Context, user user.User) (string, error) {
 	if err := initConfig(); err != nil {
 		fmt.Errorf("error connection to config : %v", err)
 	}
 
-	var usr user.User
-	usr.Username = username
-	usr.Password = password
-
-	user, err := s.repo.GetUser(ctx, usr.Username, generatePasswordHash(usr.Password))
+	user, err := s.repo.GetUser(ctx, user.Username, generatePasswordHash(user.Password))
 	if err != nil {
 		return "", err
 	}
