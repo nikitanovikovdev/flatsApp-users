@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-var tkn = make(chan string, 1)
+
 
 type Handler struct {
 	s *Service
@@ -53,12 +53,8 @@ func (h *Handler) SignIn()  http.HandlerFunc{
 			return
 		}
 
-		tkn <- token
-
 		response.OkWithMessage(w, []byte(token))
 	}
 }
 
-func (h *Handler) GetToken() string {
-	return <- tkn
-}
+

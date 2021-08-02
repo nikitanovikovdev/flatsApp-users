@@ -7,8 +7,12 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/nikitanovikovdev/flatsApp-users/pkg/platform/user"
 	"github.com/spf13/viper"
+	"log"
+	"net/http"
 	"time"
 )
+
+var m = make(map[string]string)
 
 type Service struct {
 	repo *Repository
@@ -50,7 +54,22 @@ func (s *Service) GenerateToken(ctx context.Context, user user.User) (string, er
 		user.Username,
 	})
 
+	m["token"], err = token.SignedString([]byte(viper.GetString("keys.signing_key")))
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	return token.SignedString([]byte(viper.GetString("keys.signing_key")))
+}
+
+func(s *Service) GetCookie() (http.Cookie, error) {
+	expirationTime := time.Now().Add(1 *time.Hour)
+
+	return http.Cookie{
+		Name: "token",
+		Value: m["token"],
+		Expires: expirationTime,
+	}, nil
 }
 
 func generatePasswordHash(pass string) string {
