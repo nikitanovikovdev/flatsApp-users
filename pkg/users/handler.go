@@ -53,6 +53,13 @@ func (h *Handler) SignIn()  http.HandlerFunc{
 			return
 		}
 
+		cookie, err := h.s.GetCookie()
+		if err != nil {
+			response.UserError(w, err)
+		}
+
+		http.SetCookie(w, &cookie)
+
 		response.OkWithMessage(w, []byte(token))
 	}
 }

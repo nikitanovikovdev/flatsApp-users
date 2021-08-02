@@ -30,8 +30,6 @@ type GRPCServer struct {
 	h *users.Handler
 }
 
-
-
 func (g *GRPCServer) ReturnSignKey(ctx context.Context, empty *authorization.Empty) (*authorization.SigningKey, error) {
 	return &authorization.SigningKey{SigningKey: viper.GetString("keys.signing_key")}, nil
 }
