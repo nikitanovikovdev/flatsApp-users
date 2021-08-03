@@ -25,6 +25,10 @@ func (s *Server) Run() error {
 	return s.srv.ListenAndServe()
 }
 
+func(s *Server) Shutdown(ctx context.Context) error {
+	return s.srv.Shutdown(ctx)
+}
+
 type GRPCServer struct {
 	h *users.Handler
 }
