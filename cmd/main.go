@@ -44,8 +44,9 @@ func main() {
 	}
 
 	if err := s.Serve(l); err != nil {
-		log.Fatalf("failed to listen: %v", err)
+		log.Fatalf("failed to listn: %v", err)
 	}
+
 }
 
 func initConfig() error {

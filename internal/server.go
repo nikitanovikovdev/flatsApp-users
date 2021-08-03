@@ -25,7 +25,6 @@ func (s *Server) Run() error {
 	return s.srv.ListenAndServe()
 }
 
-
 type GRPCServer struct {
 	h *users.Handler
 }

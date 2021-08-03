@@ -71,6 +71,7 @@ func(s *Service) GetCookie() (http.Cookie, error) {
 		Expires: expirationTime,
 	}, nil
 }
+
 func generatePasswordHash(pass string) string {
 	hash := sha1.New()
 	hash.Write([]byte(pass))
